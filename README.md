@@ -23,7 +23,8 @@
 
 # Target user
   * It is ideal for users who primarily use a keyboard and don't need a mouse, but still want to use one occasionally.  
-
+  * It is ideal as a stopgap measure until the drivers for the mouse pad or touch panel are installed.
+    
 # Note
   * Due to the use of up, down, left, and right buttons, diagonal movement is not possible.  
   * Please take care not to short-circuit or damage components on the back of the board.    
