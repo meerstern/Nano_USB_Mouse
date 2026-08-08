@@ -11,7 +11,8 @@
 
 # Direction Setting
   * To configure the mouse orientation, insert the USB connector while holding the knob tilted in the desired "up" direction.   
-  * The settings will be applied immediately.  
+  * The settings will be applied immediately.
+  * If the settings are not applied, please perform the procedure again.  
   * The configuration data is automatically saved to flash memory.   
   * The orientation does not need to be set again for subsequent uses.  
   * The configuration data supports up to approximately 10,000 rewrite cycles.  
