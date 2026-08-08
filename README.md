@@ -1,8 +1,9 @@
 
 # Overview
   * This is a compact mouse equipped with 5 directional pad, size 14mm x 25mm.  
-  * It features up, down, left, right, center buttons, and left/right click buttons.  
-  * Pressing and holding changes the mouse speed between two levels.   
+  * It features up, down, left, right, center buttons, and left/right click buttons.
+  * The center button functions the same as the left mouse button.  
+  * If you continue to tilt the knob, the speed changes in two stages.  
   * Suitable for small PCs and SBCs(Single Board Computers, like Raspberry Pi).   
   * It operates using standard drivers, without the need for a dedicated driver.   
   * You can change the mouse orientation according to the direction of the USB port.  
@@ -24,6 +25,7 @@
   * It is ideal for users who primarily use a keyboard and don't need a mouse, but still want to use one occasionally.  
 
 # Note
+  * Due to the use of up, down, left, and right buttons, diagonal movement is not possible.  
   * Please take care not to short-circuit or damage components on the back of the board.    
   * Please operate the knob gently. Operating it with excessive force may cause damage.  
   * PCB color, LED color, and other specifications are subject to change without notice.  
