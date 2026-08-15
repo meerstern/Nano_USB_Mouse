@@ -17,7 +17,4 @@
 
 void USBInterruptHandler( void ) __interrupt (INT_NO_USB);
 void mouse_init();
-void mouse_move(int8_t delta_x, int8_t delta_y);
-void mouse_scroll(int8_t delta);
-void mouse_buttons(uint8_t buttons);
-
+void hidValueHandle(uint8_t button, int8_t x, int8_t y, int8_t wheel);

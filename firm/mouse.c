@@ -345,10 +345,10 @@ void USBInterruptHandler( void ) __interrupt (INT_NO_USB)
 	}
 }
 
-void HIDValueHandle(uint8_t button, int8_t x, int8_t y, int8_t wheel)
+void hidValueHandle(uint8_t button, int8_t x, int8_t y, int8_t wheel)
 {
 	HIDDataSent = 0;		
-	hidMouse[0] = button;
+	hidMouse[0] = button&MOUSE_BUTTONS_MASK;
 	hidMouse[1] = x;
 	hidMouse[2] = y;
 	hidMouse[3] = wheel;
@@ -383,18 +383,3 @@ void mouse_init()
 	while(RepDescSent == 0) {};
 }
 
-void mouse_move(int8_t delta_x, int8_t delta_y)
-{
-	HIDValueHandle(0, delta_x, delta_y, 0);
-}
-
-void mouse_scroll(int8_t delta)
-{
-	HIDValueHandle(0, 0, 0, delta);
-}
-
-void mouse_buttons(uint8_t buttons)
-{
-	buttonsState = (buttons & MOUSE_BUTTONS_MASK);
-	HIDValueHandle(buttonsState, 0, 0, 0);
-}

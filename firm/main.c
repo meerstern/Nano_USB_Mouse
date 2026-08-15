@@ -21,7 +21,7 @@
 #define ADDRESS_DIRECTION	0		//Flash Address for Direction Memory
 #define MOUSE_MOVE_DELTA	2		//Joystick Normal Speed
 #define MOUSE_MOVE_SCALE	4		//Joystick Speed Up Scale
-#define MOUSE_COUNT_MAX		12		//Joystick Speed Up Count
+#define MOUSE_COUNT_MAX		20		//Joystick Speed Up Count
 
 enum{
 	BOTTOM_SIDE_USB_MODE,	
@@ -105,13 +105,13 @@ void convertMode(unsigned char mode, unsigned char data,
 	 	
 	if(mode==BOTTOM_SIDE_USB_MODE)
 	{
-		*left_btn 	= (dat>>BTN_B)&0x01|(dat>>JOY_C)&0x01;//B&C
-		*right_btn 	= (dat>>BTN_A)&0x01;				//A				
+		*left_btn 	= (dat>>BTN_B)&0x01|(dat>>JOY_C)&0x01;
+		*right_btn 	= (dat>>BTN_A)&0x01;								
 	}
 	else
 	{
-		*left_btn  	= (dat>>BTN_A)&0x01|(dat>>JOY_C)&0x01;//A&C
-		*right_btn	= (dat>>BTN_B)&0x01;				//B
+		*left_btn  	= (dat>>BTN_A)&0x01|(dat>>JOY_C)&0x01;
+		*right_btn	= (dat>>BTN_B)&0x01;
 	}
 	
 	if(mode==LEFT_SIDE_USB_MODE)
@@ -151,10 +151,10 @@ void main()
 	mInitSTDIO();
 	initGPIO();
 	
-	int8_t moveX;
-	int8_t moveY;
+	int8_t moveX = 0;
+	int8_t moveY = 0;
 	unsigned char move = 0;
-	unsigned char moveOld = 0;
+	//unsigned char moveOld = 0;
 	unsigned char btn = 0;
 	unsigned char btnOld = 0;
 	unsigned char direction = UP_SIDE_USB_MODE;
@@ -200,8 +200,8 @@ void main()
 	while(1)
 	{
 		dat = shiftIn();
-		move = dat & MOVE_MASK;
-		btn = dat &BUTTON_MASK;
+		//move = dat & MOVE_MASK;
+		//btn = dat &BUTTON_MASK;
 		convertMode(direction, dat, 
 				&BtnLeft, &BtnRight, 
 				&JoyUp, &JoyDown, &JoyLeft, &JoyRight);
@@ -223,37 +223,39 @@ void main()
 			else
 				moveY = 0;
 			
-			if(joyCount<MOUSE_COUNT_MAX)
+			if(joyCount < MOUSE_COUNT_MAX)
 				joyCount++;
 			
 			//Speed Up
-			if(joyCount>=MOUSE_COUNT_MAX)
+			if(joyCount >= MOUSE_COUNT_MAX)
 			{
 				moveX = moveX*MOUSE_MOVE_SCALE;
 				moveY = moveY*MOUSE_MOVE_SCALE;
 			}
 			
-			mouse_move(moveX, moveY);
-			moveOld = move;
-			mDelaymS(3);
 		}
 		else
 		{
 			joyCount = 0;
 		}
 		
-		
-		if(btn != btnOld )
+
+		btn = (uint8_t)BtnLeft*MOUSE_LEFT_BUTTON + (uint8_t)BtnRight*MOUSE_RIGHT_BUTTON;
+
+		if(JoyUp || JoyDown || JoyLeft || JoyRight || BtnLeft || BtnRight || btnOld != btn)
 		{
-			btn = 0;
-			if(BtnLeft)
-				btn = MOUSE_LEFT_BUTTON;
-			if(BtnRight)
-				btn = MOUSE_RIGHT_BUTTON;
+			if(JoyUp + JoyDown + JoyLeft + JoyRight == 0)
+			{
+				moveX = 0;
+				moveY = 0;				
+			}
 			
-			mouse_buttons(btn);
+			hidValueHandle(btn, moveX, moveY, 0);
+
 			btnOld = btn;
-			mDelaymS(3);
+			//moveOld = move;
+			mDelaymS(5);
 		}
+		
 	}
 }
