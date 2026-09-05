@@ -24,15 +24,22 @@
 # Target user
   * It is ideal for users who primarily use a keyboard and don't need a mouse, but still want to use one occasionally.  
   * It is ideal as a stopgap measure until the drivers for the mouse pad or touch panel are installed.
-    
+  * It is convenient to use in combination with a [Nano USB Scroller][1].  
+
 # Note
   * Due to the use of up, down, left, and right buttons, diagonal movement is not possible.  
   * Please take care not to short-circuit or damage components on the back of the board.    
   * Please operate the knob gently. Operating it with excessive force may cause damage.  
-  * PCB color, LED color, and other specifications are subject to change without notice.  
+  * PCB color, LED color, and other specifications are subject to change without notice.
+    
 ## Appearance and examples
 <img src="img/img1.jpeg" width="360">
 <img src="img/img2.jpeg" width="360">
 
 
 <img src="img/img5.jpeg" width="360">
+
+<img src="https://github.com/meerstern/Nano_USB_Scroller/blob/main/img/img4.jpeg?raw=true" width="360">
+Combination use with the USB Nano Scroller 
+
+[1]: https://github.com/meerstern/Nano_USB_Scroller/
